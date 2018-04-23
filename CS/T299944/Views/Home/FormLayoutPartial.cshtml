@@ -1,0 +1,29 @@
+@using T299944.Models
+@model T299944.Models.SimpleModel
+@Html.DevExpress().FormLayout(settings => {
+        settings.Name = "RegistrationFormLayout";
+        settings.Width = 400;
+        settings.Items.Add(model => model.Name, FormLayoutHelper.FormLayoutItemSettingsMethod).HelpText = "Cannot be “admin”, cannot contain spaces";
+        settings.Items.Add(model => model.Age, FormLayoutHelper.FormLayoutItemSettingsMethod).HelpText = "Must be between 18 and 100";
+        settings.Items.Add(model => model.Phone, FormLayoutHelper.FormLayoutItemSettingsMethod).HelpText = "E.g. +1 (789) 555-1234";
+        settings.Items.Add(model => model.Email, FormLayoutHelper.FormLayoutItemSettingsMethod).HelpText = "Must be a valid email";
+        settings.Items.Add(itemSettings => {
+            itemSettings.Caption = string.Empty;
+            itemSettings.SetNestedContent(() => {
+                ViewContext.Writer.Write("<div class='line'>");
+                Html.DevExpress().Button(btnSettings => {
+                    btnSettings.Name = "btnUpdate";
+                    btnSettings.Text = "Send";
+                    btnSettings.ControlStyle.CssClass = "button";                  
+                    btnSettings.UseSubmitBehavior = true;
+                }).Render();
+                Html.DevExpress().Button(btnSettings => {
+                    btnSettings.Name = "btnClear";
+                    btnSettings.Text = "Clear";
+                    btnSettings.ControlStyle.CssClass = "button";
+                    btnSettings.ClientSideEvents.Click = "function(s, e){ ASPxClientEdit.ClearEditorsInContainer(); }";
+                }).Render();
+                ViewContext.Writer.Write("</div>");
+            });
+        });
+    }).GetHtml()
