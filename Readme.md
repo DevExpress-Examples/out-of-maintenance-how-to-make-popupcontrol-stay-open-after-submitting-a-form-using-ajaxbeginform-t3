@@ -10,7 +10,7 @@
 <!-- default file list end -->
 # How to make PopupControl stay open after submitting a form using Ajax.BeginForm
 <!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/t303557)**
+**[[Run Online]](https://codecentral.devexpress.com/t303557/)**
 <!-- run online end -->
 
 
